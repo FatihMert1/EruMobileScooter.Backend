@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using EruMobileScooter.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace EruMobileScooter.Api
 {
@@ -26,6 +28,12 @@ namespace EruMobileScooter.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationContext>(options => {
+                options.UseNpgsql(Configuration.GetConnectionString("postgresConString"));
+            });
+            
+            services.AddScoped<ApplicationContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
