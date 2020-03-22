@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EruScooterMobile.Test
+namespace EruMobileScooter.Test
 {
     public class Class1
     {

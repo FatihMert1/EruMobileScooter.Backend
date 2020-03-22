@@ -1,3 +1,16 @@
 *.json
 */obj
 */bin
+
+./EruMobileScooter.Api/bin
+./EruMobileScooter.Api/obj
+./EruMobileScooter.Api/appsettings.json
+
+./EruMobileScooter.Test/bin
+./EruMobileScooter.Test/obj
+
+./EruMobileScooter.Data/bin
+./EruMobileScooter.Data/obj
+
+./EruMobileScooter.Service/obj
+./EruMobileScooter.Service/bin
