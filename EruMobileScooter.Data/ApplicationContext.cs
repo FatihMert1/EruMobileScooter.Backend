@@ -14,7 +14,9 @@ namespace EruMobileScooter.Data
         public DbSet<Payment> Payments { get; set; }
 
      
-     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {}
+     public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) {
+         this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+     }
      
 
     protected override void OnModelCreating(ModelBuilder modelBuilder){

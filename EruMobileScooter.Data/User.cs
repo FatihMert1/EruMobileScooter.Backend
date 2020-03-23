@@ -1,6 +1,8 @@
+using System;
+
 namespace EruMobileScooter.Data{
 
-    public class User : BaseEntity {
+    public class User : BaseEntity, IEquatable<User> {
 
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -14,6 +16,20 @@ namespace EruMobileScooter.Data{
         public Role Role { get; set; }    // Öğretmen veya Öğrenci
         public bool isBanned { get; set; }  // Kullanıcının banlanıp banlanmadıgı 
 
+        public bool Equals(User other)
+        {
+            return  this.Name == other.Name &&
+                    this.Surname == other.Surname &&
+                    this.Password == other.Password &&
+                    this.Identity == other.Identity &&
+                    this.Gender == other.Gender &&
+                    this.Email == other.Email &&
+                    this.Phone == other.Phone &&
+                    this.Faculty == other.Faculty &&
+                    this.Department == other.Department &&
+                    this.Role == other.Role &&
+                    this.isBanned == other.isBanned;
+        }
     }
 
 
