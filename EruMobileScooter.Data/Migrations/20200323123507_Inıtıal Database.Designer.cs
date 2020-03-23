@@ -3,15 +3,17 @@ using System;
 using EruMobileScooter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace EruMobileScooter.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200323123507_Inıtıal Database")]
+    partial class InıtıalDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,12 +86,12 @@ namespace EruMobileScooter.Data.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id")
-                        .HasName("pk_energy_generators");
+                        .HasName("pk_energy_creators");
 
                     b.HasIndex("EnergyStationId")
-                        .HasName("ix_energy_generators_energy_station_id");
+                        .HasName("ix_energy_creators_energy_station_id");
 
-                    b.ToTable("energy_generators");
+                    b.ToTable("energy_creators");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.EnergyStation", b =>
@@ -118,44 +120,6 @@ namespace EruMobileScooter.Data.Migrations
                         .HasName("pk_energy_stations");
 
                     b.ToTable("energy_stations");
-                });
-
-            modelBuilder.Entity("EruMobileScooter.Data.Payment", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<double>("Price")
-                        .HasColumnName("price")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("ScooterTransportHistoryId")
-                        .HasColumnName("scooter_transport_history_id")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("UserId")
-                        .HasColumnName("user_id")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id")
-                        .HasName("pk_payments");
-
-                    b.HasIndex("ScooterTransportHistoryId")
-                        .HasName("ix_payments_scooter_transport_history_id");
-
-                    b.HasIndex("UserId")
-                        .HasName("ix_payments_user_id");
-
-                    b.ToTable("payments");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.Scooter", b =>
@@ -273,21 +237,21 @@ namespace EruMobileScooter.Data.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id")
-                        .HasName("pk_scooter_transport_histories");
+                        .HasName("pk_scooter_histories");
 
                     b.HasIndex("FromStationId")
-                        .HasName("ix_scooter_transport_histories_from_station_id");
+                        .HasName("ix_scooter_histories_from_station_id");
 
                     b.HasIndex("ScooterId")
-                        .HasName("ix_scooter_transport_histories_scooter_id");
+                        .HasName("ix_scooter_histories_scooter_id");
 
                     b.HasIndex("ToStationId")
-                        .HasName("ix_scooter_transport_histories_to_station_id");
+                        .HasName("ix_scooter_histories_to_station_id");
 
                     b.HasIndex("UserId")
-                        .HasName("ix_scooter_transport_histories_user_id");
+                        .HasName("ix_scooter_histories_user_id");
 
-                    b.ToTable("scooter_transport_histories");
+                    b.ToTable("scooter_histories");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.User", b =>
@@ -372,20 +336,7 @@ namespace EruMobileScooter.Data.Migrations
                     b.HasOne("EruMobileScooter.Data.EnergyStation", null)
                         .WithMany("EnergyCreators")
                         .HasForeignKey("EnergyStationId")
-                        .HasConstraintName("fk_energy_generators_energy_stations_energy_station_id");
-                });
-
-            modelBuilder.Entity("EruMobileScooter.Data.Payment", b =>
-                {
-                    b.HasOne("EruMobileScooter.Data.ScooterTransportHistory", "ScooterTransportHistory")
-                        .WithMany()
-                        .HasForeignKey("ScooterTransportHistoryId")
-                        .HasConstraintName("fk_payments_scooter_transport_histories_scooter_transport_hist");
-
-                    b.HasOne("EruMobileScooter.Data.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_payments_users_user_id");
+                        .HasConstraintName("fk_energy_creators_energy_stations_energy_station_id");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.ScooterTransportHistory", b =>
@@ -393,22 +344,22 @@ namespace EruMobileScooter.Data.Migrations
                     b.HasOne("EruMobileScooter.Data.ScooterStation", "FromStation")
                         .WithMany()
                         .HasForeignKey("FromStationId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooter_stations_from_station_id");
+                        .HasConstraintName("fk_scooter_histories_scooter_stations_from_station_id");
 
                     b.HasOne("EruMobileScooter.Data.Scooter", "Scooter")
                         .WithMany()
                         .HasForeignKey("ScooterId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooters_scooter_id");
+                        .HasConstraintName("fk_scooter_histories_scooters_scooter_id");
 
                     b.HasOne("EruMobileScooter.Data.ScooterStation", "ToStation")
                         .WithMany()
                         .HasForeignKey("ToStationId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooter_stations_to_station_id");
+                        .HasConstraintName("fk_scooter_histories_scooter_stations_to_station_id");
 
                     b.HasOne("EruMobileScooter.Data.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .HasConstraintName("fk_scooter_transport_histories_users_user_id");
+                        .HasConstraintName("fk_scooter_histories_users_user_id");
                 });
 #pragma warning restore 612, 618
         }

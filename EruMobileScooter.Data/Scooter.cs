@@ -15,6 +15,10 @@ namespace EruMobileScooter.Data{
         */
         public int MaxRange { get; set; }
         /**
+        * Scooter üzerindeki barcode bilgisi
+        */
+        public string Barcode { get; set; }
+        /**
         * Scooter'ın Anlık Aldıgı Mesafe. 2 km lik yol yapıldı.
         */
         public int CurrentRange { get; set; }
@@ -22,7 +26,5 @@ namespace EruMobileScooter.Data{
         * Scooter'ın Anlık Lokasyon Bilgisi. Şuanda IBF nin orada
         */
         public string Location { get; set; }
-
-        public ScooterStation ScooterStation { get; set; }
     }
 }

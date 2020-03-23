@@ -7,21 +7,21 @@ namespace EruMobileScooter.Data
 
         public EnergyStation()
         {
-            EnergyCreators = new HashSet<EnergyCreator>();
+            EnergyGenerators = new HashSet<EnergyGenerator>();
         }
 
         /**
-        * Enerji Kapasitesi. Toplam 1 MW Bir Türbin
+        * Enerji Kapasitesi. Toplam 1 MW
         */
-        public int EnergyCapacity { get; set; }
+        public double EnergyCapacity { get; set; }
         /**
         * Anlık Üretilen Enerji
         */
-        public int CurrentEnergy { get; set; }
+        public double CurrentEnergy { get; set; }
 
         /**
-        * Istasyonun Sahip Oldugu EnergyCreators
+        * Istasyonun Sahip Oldugu EnergyGenerators
         */
-        public ICollection<EnergyCreator> EnergyCreators { get; set; }
+        public ICollection<EnergyGenerator> EnergyGenerators { get; set; }
     }
 }

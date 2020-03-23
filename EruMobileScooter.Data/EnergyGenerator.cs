@@ -1,6 +1,6 @@
 namespace EruMobileScooter.Data
 {
-    public class EnergyCreator : BaseEntity {
+    public class EnergyGenerator : BaseEntity {
 
 
         /**

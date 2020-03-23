@@ -3,11 +3,7 @@ using System.Collections.Generic;
 namespace EruMobileScooter.Data{
 
     public class ScooterStation : BaseEntity {
-
-        public ScooterStation()
-        {
-            Scooters = new HashSet<Scooter>();
-        }
+        
         /**
         * Scooter Istasyonunun genel kapasitesi
         */
@@ -22,11 +18,5 @@ namespace EruMobileScooter.Data{
         * Scooter Istasyonunun Bulundugu Yer
         */
         public string Location { get; set; }
-        
-        /**
-        * Istasyonun İcinde Bulundurdugu Scooterlar
-        */
-        public ICollection<Scooter> Scooters { get; set; }
-
     }
 }
