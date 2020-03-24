@@ -10,6 +10,6 @@ namespace EruMobileScooter.Service.Repositories.Abstract{
         T Insert(T entity);
         bool Delete(T entity);
         bool Delete(string id);
-        T Update(T entity, string id);
+        T Update(T entity);
     }
 }

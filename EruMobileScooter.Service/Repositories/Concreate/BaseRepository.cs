@@ -22,7 +22,6 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         */
         public bool Delete(T entity)
         {
-            if(entity == null) throw new ArgumentException($"Given Entity Can Not Be Null. Entity Is : {entity.ToString()}");
             _context.Remove<T>(entity);
             return _context.Entry<T>(entity).State == EntityState.Deleted;
         }
@@ -31,7 +30,7 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         */
         public bool Delete(string id)
         {
-            if(id.Equals("") || id == null) throw new ArgumentException($"Given Id Can Not Be Null Or Empty. Id Is {id} ");
+            if(id.Trim().Equals("") || id == null) throw new ArgumentException($"Given Id Can Not Be Null Or Empty. Id Is {id} ");
             var entity = _context.Find(typeof(T),id) as T;
             _context.Remove<T>(entity);
             return _context.Entry<T>(entity).State == EntityState.Deleted;
@@ -41,7 +40,7 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         */
         public T Get(string id)
         {
-            if(id.Equals("") || id == null) return null;
+            if(id.Trim().Equals("") || id == null) return null;
             return _context.Find<T>(id);
         }
         /**
@@ -50,7 +49,6 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         public IEnumerable<T> GetAll()
         {
             return _context.Set<T>().ToList();
-            //return _context.Model.GetEntityTypes(typeof(T)) as List<T>;
         }
 
         /**
@@ -66,9 +64,9 @@ namespace EruMobileScooter.Service.Repositories.Concreate
                 return null;
         }
 
-        public T Update(T entity, string id)
+        public T Update(T entity)
         {
-            if(entity == null || id.Equals("") || id == null) return null;
+            if(entity == null) return null;
             _context.Update<T>(entity);
             if(_context.Entry<T>(entity).State == EntityState.Modified)
                 return entity;

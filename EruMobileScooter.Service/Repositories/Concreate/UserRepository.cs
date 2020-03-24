@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using EruMobileScooter.Data;
-using EruMobileScooter.Service.Helpers;
 using EruMobileScooter.Service.Repositories.Abstract;
 
 namespace EruMobileScooter.Service.Repositories.Concreate
@@ -12,14 +10,14 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         public UserRepository(ApplicationContext context) : base(context)
         {
             if(context == null)
-                throw new NullReferenceException("ApplicationContext Instance Can Not Be Null");
+                throw new ArgumentNullException("ApplicationContext Instance Can Not Be Null");
             else
                 _context = context;
         }
 
         public Gender GetGender( string id)
         {
-            if(Helper.isNullOrEmpty(id))   throw new NullReferenceException("Id Can Not Be Null Or Empty");
+            if(id.Trim().Equals(""))   throw new ArgumentException("Id Can Not Be Empty");
             var user = _context.Users.Find(id);
             if(user != null)
                 return user.Gender;
@@ -29,7 +27,7 @@ namespace EruMobileScooter.Service.Repositories.Concreate
 
         public Role GetRole(string id)
         {
-            if(Helper.isNullOrEmpty(id)) throw new NullReferenceException("Id Can Not Be Null Or Empty");
+            if(id.Trim().Equals("")) throw new ArgumentException("Id Can Not Be Empty");
             var user = _context.Users.Find(id);
             if(user != null)
                 return user.Role;
@@ -42,10 +40,10 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         */
         public bool Verify(string id, User user)
         {
-            if(Helper.isNullOrEmpty(id))    throw new NullReferenceException("Id Can Not Be Null Or Empty");
-            if(user == null)    throw new NullReferenceException("User Can Not Be Null");
+            if(id.Trim().Equals(""))    throw new ArgumentException("Id Can Not Be Empty");
+            if(user == null)    throw new ArgumentNullException("User Can Not Be Null");
             var remoteUser = Get(id);
-            if(remoteUser != null && user != null){
+            if(remoteUser != null){
                 return user.Equals(remoteUser);
             }
             return false;
