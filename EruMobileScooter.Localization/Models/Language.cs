@@ -13,20 +13,14 @@ namespace EruMobileScooter.Localization.Models
         }
 
         // Fails
-        public string Failled => translator.GetString(nameof(Failled), arguments);
+        public string Failled => translator.GetString(nameof(Failled));
+        public string AlreadyCreated => translator.GetString(nameof(AlreadyCreated));
         // Errors
-        public string WrongInput => translator.GetString(nameof(WrongInput),arguments);
+        public string WrongInput => translator.GetString(nameof(WrongInput));
 
         // Success
         public string Success => translator.GetString(nameof(Success));
 
-        private object[] arguments = null;
-        public ILanguage SetArguments(params object[] arguments)
-        {
-            this.arguments = null;
-            this.arguments = arguments;
-            return this;
-        }
     }
 
 
@@ -34,6 +28,7 @@ namespace EruMobileScooter.Localization.Models
     {
         // Fails
         string Failled { get; }
+        string AlreadyCreated { get; }  
 
         // Errors
         string WrongInput { get; }
@@ -42,7 +37,5 @@ namespace EruMobileScooter.Localization.Models
 
         // Success
         string Success { get; }
-
-        ILanguage SetArguments(params object[] arguments);
     }
 }

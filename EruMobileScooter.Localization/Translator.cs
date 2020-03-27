@@ -20,10 +20,5 @@ namespace EruMobileScooter.Localization
         {
             return localizer[title];
         }
-
-        public string GetString(string title, params object[] arguments)
-        {
-            return localizer[title, arguments];
-        }
     }
 }

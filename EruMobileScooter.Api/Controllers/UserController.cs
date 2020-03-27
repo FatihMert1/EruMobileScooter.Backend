@@ -23,24 +23,23 @@ namespace EruMobileScooter.Api.Controllers
             _unitOfWork = unitOfWork;
             this.language = language;
         }
-
         /**
         *   Returns User List
         */
         [HttpGet("all")]
         public ApiResponse<List<User>> GetUsers(){
-            var users = _unitOfWork.UserRepository.GetAll().ToList();
+            List<User> users = _unitOfWork.UserRepository.GetAll().ToList();
             if(users != null){
-                return ResponseHelper.CreateResponse(users, language.Success , 1, false);
+                return ResponseHelper.CreateResponse(users, language.Success, 1, false);
             } else {
-                return ResponseHelper.CreateResponse<List<User>>(null, language.WrongInput, 2, true);
+                return ResponseHelper.CreateResponse<List<User>>(null, language.Failled, 2, true);
             }
         }
 
         [HttpGet("{id}")]
         public ApiResponse<User> GetUser(string id){
             if (id.Equals("") || id == null)
-                return ResponseHelper.CreateResponse<User>(null, language.SetArguments("ID").WrongInput, 2, true);
+                return ResponseHelper.CreateResponse<User>(null, language.WrongInput, 2, true);
             var user = _unitOfWork.UserRepository.Get(id);
             if(user != null){
                 return ResponseHelper.CreateResponse(user,language.Success,1,false);
@@ -51,35 +50,57 @@ namespace EruMobileScooter.Api.Controllers
 
         [HttpPost("insert")]
         public ApiResponse<User> Insert([FromBody] User user){
-            var isValidUser = UserHelper.IsUserValid(user,language);
+            var isValidUser = UserHelper.IsUserValid(user);
             if(isValidUser == false)
                 return ResponseHelper.CreateResponse<User>(null,language.WrongInput,2,true);
+            
+            List<User> users = _unitOfWork.UserRepository.GetAll().ToList();
+            bool isAlreadyCreated = false;
+
+            users.ForEach(u => {
+                if(u.Identity == user.Identity)
+                    isAlreadyCreated = true;
+                });
+            if(isAlreadyCreated)
+                return ResponseHelper.CreateResponse<User>(null,language.AlreadyCreated,2,true);
+            
             var result = _unitOfWork.UserRepository.Insert(user);
             var commitResult = _unitOfWork.Commit();
-            language.SetArguments("User Inserted");
+
             if (result != null && commitResult)
                 return ResponseHelper.CreateResponse(result, language.Success, 1, false);
             else
                 return ResponseHelper.CreateResponse<User>(null, language.Failled, 2, true);
         }
 
-        [HttpPut("update/{id}")]
-        public ApiResponse<User> Update([FromBody] User user,string id){
-            var isValidUser = UserHelper.IsUserValid(user,language);
+        [HttpPut("update")]
+        public ApiResponse<User> Update([FromBody] User user){
+            if(user == null || user.Id.Equals("") || user.Id == null)
+                return ResponseHelper.CreateResponse<User>(null,language.WrongInput,2,true);
+            var isValidUser = UserHelper.IsUserValid(user);
             if(isValidUser == false) 
-                ResponseHelper.CreateResponse<User>(user,language.WrongInput,2,true);
+                return ResponseHelper.CreateResponse<User>(user,language.WrongInput,2,true);
             var result = _unitOfWork.UserRepository.Update(user);
             var commitResult = _unitOfWork.Commit();
             if(result != null && commitResult)
-            {
-                language.SetArguments("Update User");
                 return ResponseHelper.CreateResponse<User>(result, language.Success, 1, false);
-            }
             else
-            {
-                language.SetArguments("Update User");
                 return ResponseHelper.CreateResponse<User>(null, language.Failled, 2, true);
-            }
+        }
+
+        [HttpDelete("delete/{id}")]
+        public ApiResponse<bool> Delete(string id){
+            
+            if(id == null || id.Equals(""))
+                return ResponseHelper.CreateResponse<bool>(false,language.WrongInput,2,true);
+
+            var deleteResult = _unitOfWork.UserRepository.Delete(id);
+            var commitResult = _unitOfWork.Commit();
+            if(deleteResult && commitResult)
+                return ResponseHelper.CreateResponse<bool>(true,language.Success,1,false);
+            else
+                return ResponseHelper.CreateResponse<bool>(false,language.Failled,2,true);
+        
         }
     }
 }

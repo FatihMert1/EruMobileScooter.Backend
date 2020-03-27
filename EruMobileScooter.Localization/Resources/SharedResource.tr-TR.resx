@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyCreated" xml:space="preserve">
+    <value>Zaten Oluşturulmuş</value>
+  </data>
   <data name="Failled" xml:space="preserve">
-    <value>İslem Başarısız, {0}</value>
+    <value>İslem Başarısız</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Başarılı, {0}</value>
+    <value>Başarılı</value>
   </data>
   <data name="WelcomeMsg" xml:space="preserve">
-    <value>Merhaba Mesaji,- {0}-</value>
+    <value>Merhaba Mesaji</value>
   </data>
   <data name="WrongInput" xml:space="preserve">
-    <value>Gecersiz Girdi, {0}</value>
+    <value>Gecersiz Girdi</value>
   </data>
 </root>

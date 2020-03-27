@@ -117,16 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyCreated" xml:space="preserve">
+    <value>Already Created</value>
+  </data>
   <data name="Failled" xml:space="preserve">
-    <value>Failled Process, {0}</value>
+    <value>Failled Process</value>
   </data>
   <data name="Success" xml:space="preserve">
-    <value>Successfuly, {0}</value>
+    <value>Successfuly</value>
   </data>
   <data name="WelcomeMsg" xml:space="preserve">
-    <value>Hi, -{0}-</value>
+    <value>Hi</value>
   </data>
   <data name="WrongInput" xml:space="preserve">
-    <value>Wrong Input, {0}</value>
+    <value>Wrong Input</value>
   </data>
 </root>

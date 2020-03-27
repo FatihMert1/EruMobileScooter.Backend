@@ -9,17 +9,17 @@ namespace EruMobileScooter.Service
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(ApplicationContext context)
         {
             Context = context;
         }
-        public DbContext Context {get;}
+        public ApplicationContext Context {get;}
 
         private UserRepository _userRepository;
         public IUserRepository UserRepository {
             get {
                 if(_userRepository == null)
-                    _userRepository = new UserRepository(Context as ApplicationContext);
+                    _userRepository = new UserRepository(Context);
                 return _userRepository;
             }
         }

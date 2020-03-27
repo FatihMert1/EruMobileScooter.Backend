@@ -67,8 +67,8 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         public T Update(T entity)
         {
             if(entity == null) return null;
-            _context.Update<T>(entity);
-            if(_context.Entry<T>(entity).State == EntityState.Modified)
+            _context.Set<T>().Update(entity);
+             if(_context.Entry(entity).State == EntityState.Modified)
                 return entity;
             else
                 return null;

@@ -36,7 +36,6 @@ namespace EruMobileScooter.Api
             });
                         
             services.AddScoped<ApplicationContext>();
-            services.AddScoped<DbContext,ApplicationContext>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddSingleton<Translator>();
             services.AddSingleton<ILanguage, Language>();
