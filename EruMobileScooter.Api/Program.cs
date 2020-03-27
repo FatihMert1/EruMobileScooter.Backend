@@ -22,5 +22,6 @@ namespace EruMobileScooter.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+                
     }
 }

@@ -48,7 +48,7 @@ namespace EruMobileScooter.Service.Repositories.Concreate
         */
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>();
         }
 
         /**

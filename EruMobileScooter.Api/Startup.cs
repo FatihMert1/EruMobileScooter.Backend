@@ -1,17 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using EruMobileScooter.Data;
 using Microsoft.EntityFrameworkCore;
+using EruMobileScooter.Service;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+using EruMobileScooter.Localization;
+using EruMobileScooter.Localization.Models;
+using System;
 
 namespace EruMobileScooter.Api
 {
@@ -27,18 +26,25 @@ namespace EruMobileScooter.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLocalization(o => o.ResourcesPath = "Resources");
+
             services.AddControllers();
 
-            services.AddEntityFrameworkNpgsql().AddDbContext<ApplicationContext>(options => {
+            services.AddDbContext<ApplicationContext>(options => {
                 options.UseNpgsql(Configuration.GetConnectionString("postgresConString")).UseSnakeCaseNamingConvention();
             });
-            
+                        
             services.AddScoped<ApplicationContext>();
+            services.AddScoped<DbContext,ApplicationContext>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddSingleton<Translator>();
+            services.AddSingleton<ILanguage, Language>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -46,14 +52,27 @@ namespace EruMobileScooter.Api
 
             app.UseHttpsRedirection();
 
+            var supportedCultures = new[] { new CultureInfo("en-UK"), new CultureInfo("tr-TR"), };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-UK"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+           app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

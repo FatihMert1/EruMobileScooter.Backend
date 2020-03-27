@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
@@ -12,8 +12,19 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EruMobileScooter.Service\EruMobileScooter.Service.csproj" />
+    <ProjectReference Include="..\EruMobileScooter.Localization\EruMobileScooter.Localization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utils\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>EruMobileScooter.Api.Program</StartupObject>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
 

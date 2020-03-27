@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EruMobileScooter.Data", "EruMobileScooter.Data\EruMobileScooter.Data.csproj", "{E98F3F86-A67A-41BA-B01F-CB2CFBF0F277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EruMobileScooter.Data", "EruMobileScooter.Data\EruMobileScooter.Data.csproj", "{E98F3F86-A67A-41BA-B01F-CB2CFBF0F277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EruMobileScooter.Service", "EruMobileScooter.Service\EruMobileScooter.Service.csproj", "{2652AEB8-5542-4D61-AE95-7046F9C8B634}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EruMobileScooter.Service", "EruMobileScooter.Service\EruMobileScooter.Service.csproj", "{2652AEB8-5542-4D61-AE95-7046F9C8B634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EruMobileScooter.Api", "EruMobileScooter.Api\EruMobileScooter.Api.csproj", "{9C3A0FC5-43C3-4F89-8F05-08E492DA591F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EruMobileScooter.Api", "EruMobileScooter.Api\EruMobileScooter.Api.csproj", "{9C3A0FC5-43C3-4F89-8F05-08E492DA591F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EruMobileScooter.Test", "EruMobileScooter.Test\EruMobileScooter.Test.csproj", "{16DA42DD-32C0-4A94-A491-1042CEF97921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EruMobileScooter.Test", "EruMobileScooter.Test\EruMobileScooter.Test.csproj", "{16DA42DD-32C0-4A94-A491-1042CEF97921}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EruMobileScooter.Localization", "EruMobileScooter.Localization\EruMobileScooter.Localization.csproj", "{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E98F3F86-A67A-41BA-B01F-CB2CFBF0F277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +71,23 @@ Global
 		{16DA42DD-32C0-4A94-A491-1042CEF97921}.Release|x64.Build.0 = Release|Any CPU
 		{16DA42DD-32C0-4A94-A491-1042CEF97921}.Release|x86.ActiveCfg = Release|Any CPU
 		{16DA42DD-32C0-4A94-A491-1042CEF97921}.Release|x86.Build.0 = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|x64.Build.0 = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Debug|x86.Build.0 = Debug|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|x64.ActiveCfg = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|x64.Build.0 = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|x86.ActiveCfg = Release|Any CPU
+		{A7D244EB-10B7-40B9-8FD3-08D69FD7F9E7}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FC6BF82-455E-4A56-9CAC-EA8E63DA569D}
 	EndGlobalSection
 EndGlobal
