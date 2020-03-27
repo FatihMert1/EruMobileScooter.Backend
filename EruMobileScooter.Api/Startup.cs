@@ -31,7 +31,8 @@ namespace EruMobileScooter.Api
             services.AddControllers();
 
             services.AddDbContext<ApplicationContext>(options => {
-                options.UseNpgsql(Configuration.GetConnectionString("postgresConString")).UseSnakeCaseNamingConvention();
+                options.UseNpgsql(Configuration.GetConnectionString("postgresConString"));
+                //.UseSnakeCaseNamingConvention();
             });
                         
             services.AddScoped<ApplicationContext>();

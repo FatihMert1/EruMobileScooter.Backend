@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EruMobileScooter.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200323123858_Changed Table Name EnergyGenerators and ScooterTransportHistory")]
-    partial class ChangedTableNameEnergyGeneratorsandScooterTransportHistory
+    [Migration("20200327144534_Initial_Database")]
+    partial class Initial_Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,342 +24,306 @@ namespace EruMobileScooter.Data.Migrations
             modelBuilder.Entity("EruMobileScooter.Data.ActiveScooter", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ScooterId")
-                        .HasColumnName("scooter_id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
-                        .HasColumnName("user_id")
                         .HasColumnType("text");
 
-                    b.HasKey("Id")
-                        .HasName("pk_active_scooters");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ScooterId")
-                        .HasName("ix_active_scooters_scooter_id");
+                    b.HasIndex("ScooterId");
 
-                    b.HasIndex("UserId")
-                        .HasName("ix_active_scooters_user_id");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("active_scooters");
+                    b.ToTable("ActiveScooters");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.EnergyGenerator", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CurrentEnergy")
-                        .HasColumnName("current_energy")
                         .HasColumnType("integer");
 
                     b.Property<int>("EnergyCapacity")
-                        .HasColumnName("energy_capacity")
                         .HasColumnType("integer");
 
                     b.Property<string>("EnergyStationId")
-                        .HasColumnName("energy_station_id")
                         .HasColumnType("text");
 
                     b.Property<int>("Type")
-                        .HasColumnName("type")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("Id")
-                        .HasName("pk_energy_generators");
+                    b.HasKey("Id");
 
-                    b.HasIndex("EnergyStationId")
-                        .HasName("ix_energy_generators_energy_station_id");
+                    b.HasIndex("EnergyStationId");
 
-                    b.ToTable("energy_generators");
+                    b.ToTable("EnergyGenerators");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.EnergyStation", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<double>("CurrentEnergy")
-                        .HasColumnName("current_energy")
                         .HasColumnType("double precision");
 
                     b.Property<double>("EnergyCapacity")
-                        .HasColumnName("energy_capacity")
                         .HasColumnType("double precision");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("Id")
-                        .HasName("pk_energy_stations");
+                    b.HasKey("Id");
 
-                    b.ToTable("energy_stations");
+                    b.ToTable("EnergyStations");
+                });
+
+            modelBuilder.Entity("EruMobileScooter.Data.Payment", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("ScooterTransportHistoryId")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ScooterTransportHistoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.Scooter", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<string>("Barcode")
-                        .HasColumnName("barcode")
                         .HasColumnType("text");
 
                     b.Property<int>("ChargeState")
-                        .HasColumnName("charge_state")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CurrentRange")
-                        .HasColumnName("current_range")
                         .HasColumnType("integer");
 
                     b.Property<string>("Location")
-                        .HasColumnName("location")
                         .HasColumnType("text");
 
                     b.Property<int>("MaxRange")
-                        .HasColumnName("max_range")
                         .HasColumnType("integer");
 
                     b.Property<int>("Number")
-                        .HasColumnName("number")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("Id")
-                        .HasName("pk_scooters");
+                    b.HasKey("Id");
 
-                    b.ToTable("scooters");
+                    b.ToTable("Scooters");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.ScooterStation", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CurrentCapacity")
-                        .HasColumnName("current_capacity")
                         .HasColumnType("integer");
 
                     b.Property<string>("Location")
-                        .HasColumnName("location")
                         .HasColumnType("text");
 
                     b.Property<int>("MaxCapacity")
-                        .HasColumnName("max_capacity")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
-                    b.HasKey("Id")
-                        .HasName("pk_scooter_stations");
+                    b.HasKey("Id");
 
-                    b.ToTable("scooter_stations");
+                    b.ToTable("ScooterStations");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.ScooterTransportHistory", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FromStationId")
-                        .HasColumnName("from_station_id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("FromStationOutTime")
-                        .HasColumnName("from_station_out_time")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ScooterId")
-                        .HasColumnName("scooter_id")
                         .HasColumnType("text");
 
                     b.Property<string>("ToStationId")
-                        .HasColumnName("to_station_id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("ToStationInTime")
-                        .HasColumnName("to_station_in_time")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserId")
-                        .HasColumnName("user_id")
                         .HasColumnType("text");
 
-                    b.HasKey("Id")
-                        .HasName("pk_scooter_transport_histories");
+                    b.HasKey("Id");
 
-                    b.HasIndex("FromStationId")
-                        .HasName("ix_scooter_transport_histories_from_station_id");
+                    b.HasIndex("FromStationId");
 
-                    b.HasIndex("ScooterId")
-                        .HasName("ix_scooter_transport_histories_scooter_id");
+                    b.HasIndex("ScooterId");
 
-                    b.HasIndex("ToStationId")
-                        .HasName("ix_scooter_transport_histories_to_station_id");
+                    b.HasIndex("ToStationId");
 
-                    b.HasIndex("UserId")
-                        .HasName("ix_scooter_transport_histories_user_id");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("scooter_transport_histories");
+                    b.ToTable("ScooterTransportHistories");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Department")
-                        .HasColumnName("department")
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .HasColumnName("email")
                         .HasColumnType("text");
 
                     b.Property<string>("Faculty")
-                        .HasColumnName("faculty")
                         .HasColumnType("text");
 
                     b.Property<int>("Gender")
-                        .HasColumnName("gender")
                         .HasColumnType("integer");
 
                     b.Property<string>("Identity")
-                        .HasColumnName("identity")
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasColumnName("name")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .HasColumnName("password")
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .HasColumnName("phone")
                         .HasColumnType("text");
 
                     b.Property<int>("Role")
-                        .HasColumnName("role")
                         .HasColumnType("integer");
 
                     b.Property<string>("Surname")
-                        .HasColumnName("surname")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("isBanned")
-                        .HasColumnName("is_banned")
                         .HasColumnType("boolean");
 
-                    b.HasKey("Id")
-                        .HasName("pk_users");
+                    b.HasKey("Id");
 
-                    b.ToTable("users");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.ActiveScooter", b =>
                 {
                     b.HasOne("EruMobileScooter.Data.Scooter", "Scooter")
                         .WithMany()
-                        .HasForeignKey("ScooterId")
-                        .HasConstraintName("fk_active_scooters_scooters_scooter_id");
+                        .HasForeignKey("ScooterId");
 
                     b.HasOne("EruMobileScooter.Data.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_active_scooters_users_user_id");
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.EnergyGenerator", b =>
                 {
                     b.HasOne("EruMobileScooter.Data.EnergyStation", null)
-                        .WithMany("EnergyCreators")
-                        .HasForeignKey("EnergyStationId")
-                        .HasConstraintName("fk_energy_generators_energy_stations_energy_station_id");
+                        .WithMany("EnergyGenerators")
+                        .HasForeignKey("EnergyStationId");
+                });
+
+            modelBuilder.Entity("EruMobileScooter.Data.Payment", b =>
+                {
+                    b.HasOne("EruMobileScooter.Data.ScooterTransportHistory", "ScooterTransportHistory")
+                        .WithMany()
+                        .HasForeignKey("ScooterTransportHistoryId");
+
+                    b.HasOne("EruMobileScooter.Data.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("EruMobileScooter.Data.ScooterTransportHistory", b =>
                 {
                     b.HasOne("EruMobileScooter.Data.ScooterStation", "FromStation")
                         .WithMany()
-                        .HasForeignKey("FromStationId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooter_stations_from_station_id");
+                        .HasForeignKey("FromStationId");
 
                     b.HasOne("EruMobileScooter.Data.Scooter", "Scooter")
                         .WithMany()
-                        .HasForeignKey("ScooterId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooters_scooter_id");
+                        .HasForeignKey("ScooterId");
 
                     b.HasOne("EruMobileScooter.Data.ScooterStation", "ToStation")
                         .WithMany()
-                        .HasForeignKey("ToStationId")
-                        .HasConstraintName("fk_scooter_transport_histories_scooter_stations_to_station_id");
+                        .HasForeignKey("ToStationId");
 
                     b.HasOne("EruMobileScooter.Data.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_scooter_transport_histories_users_user_id");
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
